@@ -1,8 +1,11 @@
 <ion-view>
     <ion-header-bar align-title="center" >
-    
+
     <h1 class="title">dtrump</h1>
-    
+    <a ui-sref="login" class="button button-outline button-positive button-small item-pull-right">
+        Log Out
+    </a>
+
     </ion-header-bar>
     <ion-content>
         <div class="row">
@@ -22,14 +25,14 @@
                         </button>
                     </div>
                 </div>
-            </div>        
+            </div>
         </div>
         <div class="imageHolder">
             <div class="imageFrameThree" ng-repeat="p in posts">
                 <img ng-src="{{ p.imageThumbnail }}" ng-click="browseDetail(p.id)">
-            </div>     
+            </div>
 
-            <!-- placeholders -->       
+            <!-- placeholders -->
             <div class="imageFrameThree">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Dundus_Square.jpg">
             </div>
@@ -43,6 +46,6 @@
                 <img src="https://www.nycgovparks.org/photo_gallery/full_size/14413.jpg">
             </div>
         </div>
-    
+
     </ion-content>
 </ion-view>

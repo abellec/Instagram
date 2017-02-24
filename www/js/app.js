@@ -1,6 +1,7 @@
 
 angular.module('someklone.config', []).constant('appConfig', {
-        "apiAddr": "http://radiant-badlands-71342.herokuapp.com/"
+        url: "https://radiant-badlands-71342.herokuapp.com/"
+        //http://localhost:80/
 });
 
 // Declare the services module
@@ -9,7 +10,7 @@ angular.module('someklone.services', ['someklone.config']);
 // Declare the actual application module
 angular.module('someklone', ['ionic', 'someklone.controllers', 'someklone.services', 'ngCordova'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, User, $state) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -41,6 +42,10 @@ angular.module('someklone', ['ionic', 'someklone.controllers', 'someklone.servic
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
+    /*resolve: {islogged: function(User){
+        return User.islogged();
+      }
+    }*/
   })
 
   // Each tab has its own nav history stack:
@@ -111,6 +116,16 @@ angular.module('someklone', ['ionic', 'someklone.controllers', 'someklone.servic
     controller: 'PostCtrl'
   })
 
+  .state('connexion', {
+    url: '/connexion',
+    templateUrl: 'templates/connexion.html',
+    controller: 'ConnexionCtrl',
+    resolve: {islogged: function(User){
+        return User.islogged();
+      }
+    }
+  })
+
   .state('post-confirm', {
     url: '/confirm',
     templateUrl: 'templates/post-confirm.html',
@@ -124,9 +139,22 @@ angular.module('someklone', ['ionic', 'someklone.controllers', 'someklone.servic
     url: '/comment/:postId',
     templateUrl: 'templates/comment-post.html',
     controller: 'PostCommentCtrl'
+  })
+
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'
+  })
+
+  .state('register', {
+    url: '/register',
+    templateUrl: 'templates/register.html',
+    controller: 'SignupCtrl'
   });
 
+
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/home');
+  $urlRouterProvider.otherwise('/login');
 
 });

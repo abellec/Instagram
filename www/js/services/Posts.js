@@ -8,7 +8,7 @@ angular.module('someklone.services').factory('Posts', function($q, $http, appCon
         following: function()
         {
             return $q(function(resolve, reject){
-                $http.get(appConfig.apiAddr + "posts/relevant").then(function(response){
+                $http.get(appConfig.url + "posts/relevant").then(function(response){
                     posts = posts.concat(response.data);
                     resolve(posts);
                 },function(err){
